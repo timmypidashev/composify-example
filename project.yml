@@ -8,10 +8,6 @@ project:
   private: False
 
 containers:
-  caddy:
+  proxy:
     version: 0.0.0
     description: An example caddy docker container serving as a reverse proxy.
-    license: MIT
-    buildfiles:
-      - ./src/caddy/dockerfile.dev
-      - ./src/caddy/dockerfile.prod

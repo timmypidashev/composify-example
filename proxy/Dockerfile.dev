@@ -1,0 +1,4 @@
+# Composify environment arguments
+ARG PROXY_VERSION
+ARG BUILD_DATE
+ARG GIT_COMMIT
