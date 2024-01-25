@@ -3,10 +3,4 @@ version: '3'
 services:
   proxy:
     container_name: proxy
-    build:
-      context: ./proxy
-      dockerfile: Dockerfile.dev
-      args:
-        - PROXY_VERSION
-        - BUILD_DATE
-        - GIT_COMMIT
+    image: proxy:dev

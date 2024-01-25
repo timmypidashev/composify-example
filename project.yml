@@ -11,3 +11,4 @@ containers:
   proxy:
     version: 0.0.0
     description: An example caddy docker container serving as a reverse proxy.
+    location: ./proxy
