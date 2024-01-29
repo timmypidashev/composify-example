@@ -14,6 +14,7 @@ ARG ALPINE_VERSION=3.18
 ARG GO_VERSION=1.21.3
 ARG CADDY_VERSION=v2.7.5
 
+# ---- Build Stage ----
 FROM golang:${GO_VERSION}-alpine${ALPINE_VERSION} AS builder
 RUN apk add -q --progress --update --no-cache git ca-certificates tzdata
 RUN mkdir -p /caddydir/data && \
@@ -28,13 +29,16 @@ ARG PLUGINS=
 RUN for plugin in $(echo $PLUGINS | tr "," " "); do withFlags="$withFlags --with $plugin"; done && \
     xcaddy build ${CADDY_VERSION} ${withFlags}
 
+# ---- Final Stage ----
+FROM alpine:${ALPINE_VERSION}
+
 LABEL \
     com.timmypidashev.image.title="proxy" \
     com.timmypidashev.image.description="Caddy reverse proxy" \
     com.timmypidashev.image.authors="pidashev.tim@gmail.com" \
     com.timmypidashev.license="MIT" \
     com.timmypidashev.image.url="https://github.com/timmypidashev/composify-example" \
-    com.timmypidashev.image.source="https://github.com/timmypidashev/composify-example" \
+    com.timmypidashev.image.source="https://github.com/timmypidashev/composify-example"
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
