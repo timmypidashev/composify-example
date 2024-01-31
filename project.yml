@@ -12,3 +12,8 @@ containers:
     version: 0.0.0
     description: An example caddy docker container serving as a reverse proxy.
     location: ./proxy
+
+  webapp:
+    version: 0.0.0
+    description: An example container running a reflex webapp.
+    location: ./webapp

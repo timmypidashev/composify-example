@@ -161,3 +161,8 @@ cython_debug/
 
 # Project specific
 .dev/*
+*.db
+*.py[cod]
+.web
+__pycache__/
+reflex.db
