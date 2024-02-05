@@ -12,8 +12,16 @@ containers:
     version: 0.0.0
     description: An example caddy docker container serving as a reverse proxy.
     location: ./proxy
+    dev-args:
+      - DOMAIN: example.local
+    prod-args:
+      - DOMAIN: example.com
 
   webapp:
     version: 0.0.0
     description: An example container running a reflex webapp.
     location: ./webapp
+    dev-args:
+      - API_URL: https://example.local
+    prod-args:
+      - API_URL: https://example.com

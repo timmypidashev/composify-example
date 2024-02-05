@@ -11,10 +11,12 @@ class State(rx.State):
     def increment(self):
         """Increment the count."""
         self.count += 1
+        print("test")
 
     def decrement(self):
         """Decrement the count."""
         self.count -= 1
+        print("testy")
 
     def random(self):
         """Randomize the count."""
