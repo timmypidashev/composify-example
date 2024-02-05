@@ -1,13 +1,10 @@
 # Composify environment arguments
-ARG AUTHOR
-ARG CONTAINER
-ARG VERSION
-ARG DESCRIPTION
-ARG LICENSE
-ARG BUILD_DATE
-ARG GIT_COMMIT
-ARG SOURCE
-ARG URL
+ARG CONTAINER_NAME
+ARG CONTAINER_DESCRIPTION
+ARG PROJECT_AUTHORS
+ARG PROJECT_LICENSE
+ARG CONTAINER_SOURCE
+ARG PROJECT_SOURCE
 
 # Caddy base image
 ARG ALPINE_VERSION=3.18
@@ -33,12 +30,12 @@ RUN for plugin in $(echo $PLUGINS | tr "," " "); do withFlags="$withFlags --with
 FROM alpine:${ALPINE_VERSION}
 
 LABEL \
-    com.timmypidashev.image.title="proxy" \
-    com.timmypidashev.image.description="Caddy reverse proxy" \
-    com.timmypidashev.image.authors="pidashev.tim@gmail.com" \
-    com.timmypidashev.license="MIT" \
-    com.timmypidashev.image.url="https://github.com/timmypidashev/composify-example" \
-    com.timmypidashev.image.source="https://github.com/timmypidashev/composify-example"
+    com.timmypidashev.image.title=$CONTAINER_NAME \
+    com.timmypidashev.image.description=$CONTAINER_DESCRIPTION \
+    com.timmypidashev.image.authors=$PROJECT_AUTHORS \
+    com.timmypidashev.license=$PROJECT_LICENSE \
+    com.timmypidashev.image.url=$CONTAINER_SOURCE \
+    com.timmypidashev.image.source=$PROJECT_SOURCE
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
